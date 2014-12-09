@@ -44,6 +44,7 @@ Osnoven program
 ----
 Na podlagi primera bom pripravil naš program za osnovno delovanje in možnost nadaljnega programiranja
 
+        ```cpp
         #include "stdafx.h"
         //Če imate pravilno konfiguriran Visual studio, vam bo zaznalo ta include
         #include <GL\freeglut.h>
@@ -95,6 +96,7 @@ Na podlagi primera bom pripravil naš program za osnovno delovanje in možnost n
             glutMainLoop();
             return 0;
         }
+        ´´´
 
 Sestava funkcij OpenGL
 -----
