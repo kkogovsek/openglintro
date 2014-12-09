@@ -45,57 +45,57 @@ Osnoven program
 Na podlagi primera bom pripravil naš program za osnovno delovanje in možnost nadaljnega programiranja
 
 ```cpp
-        #include "stdafx.h"
-        //Če imate pravilno konfiguriran Visual studio, vam bo zaznalo ta include
-        #include <GL\freeglut.h>
-        //math.h nam bo prišla prav pri risanju grafov
-        #include <math.h>
+#include "stdafx.h"
+//Če imate pravilno konfiguriran Visual studio, vam bo zaznalo ta include
+#include <GL\freeglut.h>
+//math.h nam bo prišla prav pri risanju grafov
+#include <math.h>
 
-        //Funkcija za izrisovanje, ki se kliče na koncu vsakega izrisa
-        void render() {
-            //Počistimo buffer z barvami, da lahko začnemo rendirati
-            glClear(GL_COLOR_BUFFER_BIT);
-            //Izberemo trenutno barvo s katero bomo risali
-            glColor3f(0,0,0);
+//Funkcija za izrisovanje, ki se kliče na koncu vsakega izrisa
+void render() {
+    //Počistimo buffer z barvami, da lahko začnemo rendirati
+    glClear(GL_COLOR_BUFFER_BIT);
+    //Izberemo trenutno barvo s katero bomo risali
+    glColor3f(0,0,0);
 
-            //Sem pride risanje
+    //Sem pride risanje
 
-            //Zaključimo cikel in kličemo ponoven izris
-            glFlush();
-            glutPostRedisplay();
-        }
+    //Zaključimo cikel in kličemo ponoven izris
+    glFlush();
+    glutPostRedisplay();
+}
 
-        //Funkcija za inicializacijo privzetih vrednost OpenGL
-        void init() {
-            //Barva ozadja
-            glClearColor(1, 1, 1, 1);
-            //Povemo, da bomo delali v 2D
-            glMatrixMode(GL_PROJECTION);
-            glLoadIdentity();
-            //Nastavimo delovno površino (levo, desno, spodaj, zgoraj, blizu, daleč)
-            glOrtho(-5,5,-5,5,-1,1);
-        }
+//Funkcija za inicializacijo privzetih vrednost OpenGL
+void init() {
+    //Barva ozadja
+    glClearColor(1, 1, 1, 1);
+    //Povemo, da bomo delali v 2D
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    //Nastavimo delovno površino (levo, desno, spodaj, zgoraj, blizu, daleč)
+    glOrtho(-5,5,-5,5,-1,1);
+}
 
-        int _tmain(int argc, char** argv)
-        {
-            //Inicializacija GLUTA
-            glutInit(&argc, argv);
-            //Nastavimo spremenljivke za OpenGL
-            glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-            //Povemo velikost okna z širino in višino
-            glutInitWindowSize(400, 400);
-            //Povemo pozicijo okna levo, desno
-            glutInitWindowPosition(100, 100);
-            //Povemo ime okna
-            glutCreateWindow("OpenGL Okno");
-            //Kličemo funkcijo za inicializacijo
-            init();
-            //Povmo, katera funkcija se uporablja za rendiranje
-            glutDisplayFunc(render);
-            //Zaženemo glavno zanko za OpenGL
-            glutMainLoop();
-            return 0;
-        }
+int _tmain(int argc, char** argv)
+{
+    //Inicializacija GLUTA
+    glutInit(&argc, argv);
+    //Nastavimo spremenljivke za OpenGL
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    //Povemo velikost okna z širino in višino
+    glutInitWindowSize(400, 400);
+    //Povemo pozicijo okna levo, desno
+    glutInitWindowPosition(100, 100);
+    //Povemo ime okna
+    glutCreateWindow("OpenGL Okno");
+    //Kličemo funkcijo za inicializacijo
+    init();
+    //Povmo, katera funkcija se uporablja za rendiranje
+    glutDisplayFunc(render);
+    //Zaženemo glavno zanko za OpenGL
+    glutMainLoop();
+    return 0;
+}
 ´´´
 
 Sestava funkcij OpenGL
