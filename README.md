@@ -96,7 +96,7 @@ int _tmain(int argc, char** argv)
     glutMainLoop();
     return 0;
 }
-´´´
+```
 
 Sestava funkcij OpenGL
 -----
@@ -129,53 +129,60 @@ Risanje Kvadrata
 
 Točke podamo v smeri urinega kazalca
 
-        glBegin(GL_QUADS);
-            glVertex2f(1, 1);
-            glVertex2f(1, -1);
-            glVertex2f(-1, -1);
-            glVertex2f(-1, 1);
-        glEnd();
+```cpp
+glBegin(GL_QUADS);
+    glVertex2f(1, 1);
+    glVertex2f(1, -1);
+    glVertex2f(-1, -1);
+    glVertex2f(-1, 1);
+glEnd();
+```
 
 Risanje koordinatnega sistema
 ----
 Za prikazovanje grafov moramo najprej narisati koordinatni sistem.
 
-        //Risali bomo izključno črte, ki bodo črne barve
-        glColor3f(0,0,0);
-        glBegin(GL_LINES);
-            //Najprej povežemo Skrajni točki na Y osi
-            glVertex2d(0, 5);
-            glVertex2d(0, -5);
-            //Nato skrajni točki na X osi
-            glVertex2d(-5, 0);
-            glVertex2d(5, 0);
-            //Potem z forom narišemo verikalne in horizontalne črte
-            for (int i = -4; i < 5; i++) {
-                //Narišemo jih z odmikom po x ali y osi za +/- 0.1
-                glVertex2f(i, 0.1);
-                glVertex2f(i, -0.1);
-            }
-            for (int i = -4; i < 5; i++) {
-                glVertex2f(0.1, i);
-                glVertex2f(-0.1, i);
-            }
-        glEnd();
+```cpp
+//Risali bomo izključno črte, ki bodo črne barve
+glColor3f(0,0,0);
+glBegin(GL_LINES);
+    //Najprej povežemo Skrajni točki na Y osi
+    glVertex2d(0, 5);
+    glVertex2d(0, -5);
+    //Nato skrajni točki na X osi
+    glVertex2d(-5, 0);
+    glVertex2d(5, 0);
+    //Potem z forom narišemo verikalne in horizontalne črte
+    for (int i = -4; i < 5; i++) {
+        //Narišemo jih z odmikom po x ali y osi za +/- 0.1
+        glVertex2f(i, 0.1);
+        glVertex2f(i, -0.1);
+    }
+    for (int i = -4; i < 5; i++) {
+        glVertex2f(0.1, i);
+        glVertex2f(-0.1, i);
+    }
+glEnd();
+```
 
 Izrisovanje poljubne funkcije
 ---
 Najlažje je, da napišemo funkcijo, ki nam za poljuben X izračuna njegov Y.
 
-        float izracun(float x) {
-            return sin(x);
-        }
+```cpp
+float izracun(float x) {
+    return sin(x);
+}
+```
 
 Nato pa narišemo pike ali črte, ki povzujejo točke med sabo
 
-
-        glBegin(GL_LINE_STRIP);
-            for (float i = -5; i < 5; i += 0.01)
-                glVertex2f(i, izracun(i));
-        glEnd();
+```cpp
+glBegin(GL_LINE_STRIP);
+    for (float i = -5; i < 5; i += 0.01)
+        glVertex2f(i, izracun(i));
+glEnd();
+```
 
 Dana funkcija nam izriše nekaj takega
 
@@ -189,30 +196,38 @@ V tem primeru bomo naredili kačo, ki gre po skrčeni sinusni krivulji, in se na
 
 Najprej moramo inicializirati globalni spremenljivki. Prva bo štela trenutno pozicijo, druga pa smer;
 
-        float pozicija = -5; //Začnemo na začetku
-        int smer = 1; //uporabljen za množenje
-        float hitrost = 0.01;
+```cpp
+float pozicija = -5; //Začnemo na začetku
+int smer = 1; //uporabljen za množenje
+float hitrost = 0.01;
+```
         
 Nato napišemo funkcijo za risanje krivulje
 
-        float izracun(float x) {
-            return sin(x / 2) * 2;
-        }
+```cpp
+float izracun(float x) {
+    return sin(x / 2) * 2;
+}
+```
 
 Nato v funkcijo render vključimo risanje kače:
 
-        glBegin(GL_LINE_STRIP);
-            //Zanka se izvede 4-krat
-            for(float i = 0; i < 0.8; i+=0.2)
-                glVertex2f(pozicija - i, izracun(pozicija - i)); //Narišemo štiri točke, od trenutne pozicije do 0.6 za našo točko
-        glEnd();
-        
+```cpp
+glBegin(GL_LINE_STRIP);
+    //Zanka se izvede 4-krat
+    for(float i = 0; i < 0.8; i+=0.2)
+        glVertex2f(pozicija - i, izracun(pozicija - i)); //Narišemo štiri točke, od trenutne pozicije do 0.6 za našo točko
+glEnd();
+```   
+             
 Na koncu še preverimo če smo izven mej in spremenimo lokacijo
 
-        if(pozicija > 5) {
-            smer = -1; //Obrnemo smer
-        }
-        else if(pozicija < -5) {
-            smer = 1; //
-        }
-        pozicija += smer * hitrost;
+```cpp
+if(pozicija > 5) {
+    smer = -1; //Obrnemo smer
+}
+else if(pozicija < -5) {
+    smer = 1; //
+}
+pozicija += smer * hitrost;
+```
