@@ -178,3 +178,39 @@ Nato pa narišemo pike ali črte, ki povzujejo točke med sabo
 Dana funkcija nam izriše nekaj takega
 
 ![Sinusoida](assets/photo008.png)
+
+Animacije
+----
+Ker OpenGL riše na površino vsak frame na novo, nam to omogoča enostavno animiranje. Če hočemo lahko pridobimo tudi časovni odmik csakega frama, da lahko sinhroniziramo izrisovanje ne glede na napravo.
+
+V tem primeru bomo naredili kačo, ki gre po skrčeni sinusni krivulji, in se na koncu odbije. Določena bo s štirimi točkami točkami oddaljenimi za 0.2 glede na x os.
+
+Najprej moramo inicializirati globalni spremenljivki. Prva bo štela trenutno pozicijo, druga pa smer;
+
+        float pozicija = -5; //Začnemo na začetku
+        int smer = 1; //uporabljen za množenje
+        float hitrost = 0.01;
+        
+Nato napišemo funkcijo za risanje krivulje
+
+        float izracun(float x) {
+            return sin(x / 2) * 2;
+        }
+
+Nato v funkcijo render vključimo risanje kače:
+
+        glBegin(GL_LINE_STRIP);
+            //Zanka se izvede 4-krat
+            for(float i = 0; i < 0.8; i+=0.2)
+                glVertex2f(pozicija - i, izracun(pozicija - i)); //Narišemo štiri točke, od trenutne pozicije do 0.6 za našo točko
+        glEnd();
+        
+Na koncu še preverimo če smo izven mej in spremenimo lokacijo
+
+        if(pozicija > 5) {
+            smer = -1; //Obrnemo smer
+        }
+        else if(pozicija < -5) {
+            smer = 1; //
+        }
+        pozicija += smer * hitrost;
