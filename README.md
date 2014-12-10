@@ -199,7 +199,7 @@ Najprej moramo inicializirati globalni spremenljivki. Prva bo štela trenutno po
 ```cpp
 float pozicija = -5; //Začnemo na začetku
 int smer = 1; //uporabljen za množenje
-float hitrost = 0.01;
+float hitrost = 0.0001;
 ```
         
 Nato napišemo funkcijo za risanje krivulje
