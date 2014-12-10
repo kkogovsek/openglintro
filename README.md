@@ -206,7 +206,7 @@ Nato napišemo funkcijo za risanje krivulje
 
 ```cpp
 float izracun(float x) {
-    return sin(x / 2) * 2;
+    return sin(x * 2) * 2;
 }
 ```
 
