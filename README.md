@@ -231,3 +231,28 @@ else if(pozicija < -5) {
 }
 pozicija += smer * hitrost;
 ```
+
+Rotacija
+---------
+Na primeru bomo zavrteli kvadrat. Najprej inicializeramo globalno spremenljuvko za kot.
+
+```cpp
+float kot = 0;
+```
+
+Nato narišemo kocko glede na kot s sinusom in kosinusom
+
+```cpp
+glBegin(GL_QUADS);
+	glVertex2f(cos(kot), sin(kot));
+	glVertex2f(cos(kot + 3.14 / 2), sin(kot + 3.14 / 2));
+	glVertex2f(cos(kot + 3.14), sin(kot + 3.14));
+	glVertex2f(cos(kot + 3.14 / 2 * 3), sin(kot + 3.14 / 2 * 3));
+glEnd();
+```
+
+Na koncu kot še spremenimo
+
+```cpp
+kot += 0.001;
+```
